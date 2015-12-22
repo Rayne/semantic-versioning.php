@@ -2,6 +2,11 @@
 
 A tiny independent library for parsing and comparing semantic versions which is compatible with [Semantic Versioning 2.0](http://semver.org).
 
+[![Latest Stable Version](https://poser.pugx.org/rayne/semantic-versioning/v/stable)](https://packagist.org/packages/rayne/semantic-versioning)
+[![Latest Unstable Version](https://poser.pugx.org/rayne/semantic-versioning/v/unstable)](https://packagist.org/packages/rayne/semantic-versioning)
+[![Build Status](https://travis-ci.org/Rayne/semantic-versioning.php.svg?branch=master)](https://travis-ci.org/Rayne/semantic-versioning.php)
+[![License](https://poser.pugx.org/rayne/semantic-versioning/license)](https://packagist.org/packages/rayne/semantic-versioning)
+
 #	Dependencies
 
 ##	Production
