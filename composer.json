@@ -1,0 +1,30 @@
+{
+  "authors": [
+    {
+      "name": "Dennis Meckel"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Rayne\\SemanticVersioning\\": "src"
+    }
+  },
+  "description": "A tiny independent library for parsing and comparing semantic versions.",
+  "keywords": [
+    "semantic",
+    "semver",
+    "versioning"
+  ],
+  "license": "MIT",
+  "name": "rayne/semantic-versioning",
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "support": {
+    "issues": "https://github.com/rayne/semantic-versioning.php/issues",
+    "source": "https://github.com/rayne/semantic-versioning.php"
+  }
+}
