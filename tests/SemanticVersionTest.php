@@ -31,6 +31,13 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase {
 			['1.2.3-pre.pre', 1, 2, 3, 'pre.pre', '', ['pre', 'pre'], []],
 			['1.2.3-pre-pre', 1, 2, 3, 'pre-pre', '', ['pre-pre'],    []],
 
+			// Leading zeroes aren't forbidden for non-numeric pre-releases.
+			// This fact isn't quite clear in Semantic Versioning 2.0.0,
+			// but the Backus–Naur Form Grammar of Semantic Versioning 2.1.0 (Draft)
+			// allows leading zeroes for non-numeric pre-releases.
+			['0.0.0-0FF',   0, 0, 0, '0FF', '',  ['0FF'], []],
+			['0.0.0-0FF+0', 0, 0, 0, '0FF', '0', ['0FF'], ['0']],
+
 			// Metadata
 			['1.2.3+meta',      1, 2, 3, '', 'meta',      [], ['meta']],
 			['1.2.3+meta.meta', 1, 2, 3, '', 'meta.meta', [], ['meta', 'meta']],
@@ -83,7 +90,7 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase {
 			['0.6.0-.b'],
 			['0.6.0-a..b'],
 
-			// Pre-release with leading zeroes
+			// Pre-release numbers with leading zeroes
 			['0.0.0-00'],
 			['0.0.0-00+0'],
 
@@ -97,6 +104,11 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase {
 			// Invalid pre-release and metadata
 			['0.6.0+meta+meta'],
 			['0.6.0-pre+meta+meta'],
+
+			// Invalid characters
+			['0.0.0-❤'],
+			['0.0.0+❤'],
+			['0.0.0-Präzisionsmessgerät'],
 		];
 	}
 
