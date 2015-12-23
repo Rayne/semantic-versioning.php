@@ -68,8 +68,13 @@ class SemanticComparator {
 	 * @return int
 	 */
 	private function comparePre(SemanticVersion $left, SemanticVersion $right) {
-		if ($left->getPre() !== '' && $right->getPre() === '') return -1;
-		if ($left->getPre() === '' && $right->getPre() !== '') return  1;
+		if ($left->getPre() === '') {
+			return $right->getPre() === '' ? 0 : 1;
+		}
+
+		if ($right->getPre() === '') {
+			return -1;
+		}
 
 		$leftStack = $left->getPreStack();
 		$rightStack = $right->getPreStack();

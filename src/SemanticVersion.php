@@ -80,13 +80,13 @@ class SemanticVersion {
 		$this->preStack = $this->pre === '' ? [] : explode('.', $this->pre);
 		$this->metaStack = $this->meta === '' ? [] : explode('.', $this->meta);
 
-		foreach($this->preStack as $value) {
+		foreach ($this->preStack as $value) {
 			if ($value === '' || preg_match('#^0\d+$#', $value)) {
 				throw $this->buildException();
 			}
 		}
 
-		foreach($this->metaStack as $value) {
+		foreach ($this->metaStack as $value) {
 			if ($value === '') {
 				throw $this->buildException();
 			}
