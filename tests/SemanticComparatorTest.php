@@ -33,10 +33,10 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase {
 		$sets = [
 			[
 				'1.0.0-alpha',
-				'1.0.0-alpha.1',
+				'1.0.0-Alpha.1',
 				'1.0.0-alpha.beta',
 				'1.0.0-beta',
-				'1.0.0-beta.2',
+				'1.0.0-BETA.2',
 				'1.0.0-beta.11',
 				'1.0.0-rc.1',
 				'1.0.0',
@@ -88,11 +88,11 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase {
 	public function testEqualComparison(SemanticVersion $left, SemanticVersion $right) {
 		$comparator = new SemanticComparator();
 
-		$this->assertSame(0, $comparator->compare($left, $right));
-		$this->assertSame(0, $comparator->compare($right, $left));
+		$this->assertSame(0, $comparator->compare($left, $right), "$left == $right");
+		$this->assertSame(0, $comparator->compare($right, $left), "$right == $left");
 
-		$this->assertSame(0, $comparator($left, $right));
-		$this->assertSame(0, $comparator($right, $left));
+		$this->assertSame(0, $comparator($left, $right), "$left == $right");
+		$this->assertSame(0, $comparator($right, $left), "$right == $left");
 	}
 
 	/**
@@ -103,10 +103,10 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase {
 	public function testNotEqualComparison(SemanticVersion $smaller, SemanticVersion $greater) {
 		$comparator = new SemanticComparator();
 
-		$this->assertSame(-1, $comparator->compare($smaller, $greater));
-		$this->assertSame( 1, $comparator->compare($greater, $smaller));
+		$this->assertSame(-1, $comparator->compare($smaller, $greater), "$smaller < $greater");
+		$this->assertSame( 1, $comparator->compare($greater, $smaller), "$greater > $smaller");
 
-		$this->assertSame(-1, $comparator($smaller, $greater));
-		$this->assertSame( 1, $comparator($greater, $smaller));
+		$this->assertSame(-1, $comparator($smaller, $greater), "$smaller < $greater");
+		$this->assertSame( 1, $comparator($greater, $smaller), "$greater > $smaller");
 	}
 }

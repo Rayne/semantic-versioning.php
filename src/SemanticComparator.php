@@ -63,7 +63,7 @@ class SemanticComparator {
 		$minCount = min($leftCount, $rightCount);
 
 		for ($i = 0; $i < $minCount; $i++) {
-			$result = strnatcmp($leftStack[$i], $rightStack[$i]);
+			$result = strnatcasecmp($leftStack[$i], $rightStack[$i]);
 
 			if ($result !== 0) {
 				return $this->sign($result);
