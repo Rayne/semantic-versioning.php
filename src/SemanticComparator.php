@@ -31,19 +31,35 @@ class SemanticComparator {
 	 *
 	 * @param SemanticVersion $left
 	 * @param SemanticVersion $right
-	 * @return int `0` if both versions are equal, `-1` if `$left` is smaller and `1` if `$left` is greater.
+	 * @return int `0` if both versions are equal, `< 0` if `$left` is smaller and `> 0` if `$left` is greater.
 	 */
 	public function compare(SemanticVersion $left, SemanticVersion $right) {
-		if ($left->getMajor() < $right->getMajor()) return -1;
-		if ($left->getMajor() > $right->getMajor()) return  1;
+		$result = $this->compareMajorMinorPatch($left, $right);
 
-		if ($left->getMinor() < $right->getMinor()) return -1;
-		if ($left->getMinor() > $right->getMinor()) return  1;
+		if ($result === 0) {
+			$result = $this->comparePre($left, $right);
+		}
 
-		if ($left->getPatch() < $right->getPatch()) return -1;
-		if ($left->getPatch() > $right->getPatch()) return  1;
+		return $result;
+	}
 
-		return $this->comparePre($left, $right);
+	/**
+	 * @param SemanticVersion $left
+	 * @param SemanticVersion $right
+	 * @return int
+	 */
+	private function compareMajorMinorPatch(SemanticVersion $left, SemanticVersion $right) {
+		$result = $left->getMajor() - $right->getMajor();
+
+		if ($result === 0) {
+			$result = $left->getMinor() - $right->getMinor();
+
+			if ($result === 0) {
+				$result = $left->getPatch() - $right->getPatch();
+			}
+		}
+
+		return $result;
 	}
 
 	/**
@@ -66,18 +82,10 @@ class SemanticComparator {
 			$result = strnatcasecmp($leftStack[$i], $rightStack[$i]);
 
 			if ($result !== 0) {
-				return $this->sign($result);
+				return $result;
 			}
 		}
 
-		return $this->sign($leftCount - $rightCount);
-	}
-
-	/**
-	 * @param int $number
-	 * @return int
-	 */
-	private function sign($number) {
-		return $number < 0 ? - 1 : ($number === 0 ? 0 : 1);
+		return $leftCount - $rightCount;
 	}
 }

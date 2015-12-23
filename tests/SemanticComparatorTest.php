@@ -103,10 +103,10 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase {
 	public function testNotEqualComparison(SemanticVersion $smaller, SemanticVersion $greater) {
 		$comparator = new SemanticComparator();
 
-		$this->assertSame(-1, $comparator->compare($smaller, $greater), "$smaller < $greater");
-		$this->assertSame( 1, $comparator->compare($greater, $smaller), "$greater > $smaller");
+		$this->assertTrue($comparator->compare($smaller, $greater) < 0, "$smaller < $greater");
+		$this->assertTrue($comparator->compare($greater, $smaller) > 0, "$greater > $smaller");
 
-		$this->assertSame(-1, $comparator($smaller, $greater), "$smaller < $greater");
-		$this->assertSame( 1, $comparator($greater, $smaller), "$greater > $smaller");
+		$this->assertTrue($comparator($smaller, $greater) < 0, "$smaller < $greater");
+		$this->assertTrue($comparator($greater, $smaller) > 0, "$greater > $smaller");
 	}
 }
