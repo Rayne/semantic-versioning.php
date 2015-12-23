@@ -20,12 +20,42 @@ class SemanticVersion {
 	/**
 	 * @var int
 	 */
-	private $major, $minor, $patch;
+	private $major;
+
+	/**
+	 * @var int
+	 */
+	private $minor;
+
+	/**
+	 * @var int
+	 */
+	private $patch;
 
 	/**
 	 * @var string
 	 */
-	private $pre, $meta, $version;
+	private $pre;
+
+	/**
+	 * @var array
+	 */
+	private $preStack;
+
+	/**
+	 * @var string
+	 */
+	private $meta;
+
+	/**
+	 * @var array
+	 */
+	private $metaStack;
+
+	/**
+	 * @var string
+	 */
+	private $version;
 
 	/**
 	 * @param string $version
@@ -47,16 +77,16 @@ class SemanticVersion {
 		$this->pre = $matches[4] ? substr($matches[4], 1) : '';
 		$this->meta = $matches[5] ? substr($matches[5], 1) : '';
 
-		$preStack = $this->pre === '' ? [] : explode('.', $this->pre);
-		$metaStack = $this->meta === '' ? [] : explode('.', $this->meta);
+		$this->preStack = $this->pre === '' ? [] : explode('.', $this->pre);
+		$this->metaStack = $this->meta === '' ? [] : explode('.', $this->meta);
 
-		foreach($preStack as $value) {
-			if ($value === '' || !($value === '0' || ltrim($value, '0') === $value)) {
+		foreach($this->preStack as $value) {
+			if ($value === '' || preg_match('#^0\d+$#', $value)) {
 				throw $this->buildException();
 			}
 		}
 
-		foreach($metaStack as $value) {
+		foreach($this->metaStack as $value) {
 			if ($value === '') {
 				throw $this->buildException();
 			}
@@ -106,10 +136,26 @@ class SemanticVersion {
 	}
 
 	/**
+	 * @return string[]
+	 * @since 1.0.0-rc.2
+	 */
+	public function getPreStack() {
+		return $this->preStack;
+	}
+
+	/**
 	 * @return string Optional metadata.
 	 */
 	public function getMeta() {
 		return $this->meta;
+	}
+
+	/**
+	 * @return string[]
+	 * @since 1.0.0-rc.2
+	 */
+	public function getMetaStack() {
+		return $this->metaStack;
 	}
 
 	/**

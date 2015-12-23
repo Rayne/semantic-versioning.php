@@ -17,6 +17,16 @@ namespace Rayne\SemanticVersioning;
  */
 class SemanticComparator {
 	/**
+	 * @param SemanticVersion $left
+	 * @param SemanticVersion $right
+	 * @return int
+	 * @see compare()
+	 */
+	public function __invoke(SemanticVersion $left, SemanticVersion $right) {
+		return $this->compare($left, $right);
+	}
+
+	/**
 	 * Build metadata is ignored when determining version precedence.
 	 *
 	 * @param SemanticVersion $left
@@ -33,11 +43,20 @@ class SemanticComparator {
 		if ($left->getPatch() < $right->getPatch()) return -1;
 		if ($left->getPatch() > $right->getPatch()) return  1;
 
+		return $this->comparePre($left, $right);
+	}
+
+	/**
+	 * @param SemanticVersion $left
+	 * @param SemanticVersion $right
+	 * @return int
+	 */
+	private function comparePre(SemanticVersion $left, SemanticVersion $right) {
 		if ($left->getPre() !== '' && $right->getPre() === '') return -1;
 		if ($left->getPre() === '' && $right->getPre() !== '') return  1;
 
-		$leftStack = explode('.', $left->getPre());
-		$rightStack = explode('.', $right->getPre());
+		$leftStack = $left->getPreStack();
+		$rightStack = $right->getPreStack();
 
 		$leftCount = count($leftStack);
 		$rightCount = count($rightStack);
@@ -47,20 +66,18 @@ class SemanticComparator {
 			$result = strnatcmp($leftStack[$i], $rightStack[$i]);
 
 			if ($result !== 0) {
-				return $result < 0 ? -1 : 1;
+				return $this->sign($result);
 			}
 		}
 
-		return $leftCount < $rightCount ? -1 : ($leftCount > $rightCount ? 1 : 0);
+		return $this->sign($leftCount - $rightCount);
 	}
 
 	/**
-	 * @param SemanticVersion $left
-	 * @param SemanticVersion $right
+	 * @param int $number
 	 * @return int
-	 * @see compare()
 	 */
-	public function __invoke(SemanticVersion $left, SemanticVersion $right) {
-		return $this->compare($left, $right);
+	private function sign($number) {
+		return $number < 0 ? - 1 : ($number === 0 ? 0 : 1);
 	}
 }
