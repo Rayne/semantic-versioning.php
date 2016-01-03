@@ -74,23 +74,8 @@ class SemanticVersion {
 		$this->minor = (int) $matches[2];
 		$this->patch = (int) $matches[3];
 
-		$this->pre = $matches[4] ? substr($matches[4], 1) : '';
-		$this->meta = $matches[5] ? substr($matches[5], 1) : '';
-
-		$this->preStack = $this->pre === '' ? [] : explode('.', $this->pre);
-		$this->metaStack = $this->meta === '' ? [] : explode('.', $this->meta);
-
-		foreach ($this->preStack as $value) {
-			if ($value === '' || preg_match('#^0\d+$#', $value)) {
-				throw $this->buildException();
-			}
-		}
-
-		foreach ($this->metaStack as $value) {
-			if ($value === '') {
-				throw $this->buildException();
-			}
-		}
+		$this->setPre($matches[4] ? substr($matches[4], 1) : '');
+		$this->setMeta($matches[5] ? substr($matches[5], 1) : '');
 	}
 
 	/**
@@ -98,6 +83,36 @@ class SemanticVersion {
 	 */
 	public function __toString() {
 		return $this->getVersion();
+	}
+
+	/**
+	 * @param string $pre
+	 * @throws NoSemanticVersionException
+	 */
+	private function setPre ($pre) {
+		$this->pre = $pre;
+		$this->preStack = $pre === '' ? [] : explode('.', $pre);
+
+		foreach ($this->preStack as $value) {
+			if ($value === '' || preg_match('#^0\d+$#', $value)) {
+				throw $this->buildException();
+			}
+		}
+	}
+
+	/**
+	 * @param string $meta
+	 * @throws NoSemanticVersionException
+	 */
+	private function setMeta ($meta) {
+		$this->meta = $meta;
+		$this->metaStack = $meta === '' ? [] : explode('.', $meta);
+
+		foreach ($this->metaStack as $value) {
+			if ($value === '') {
+				throw $this->buildException();
+			}
+		}
 	}
 
 	/**
