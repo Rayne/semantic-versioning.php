@@ -89,7 +89,7 @@ class SemanticVersion {
 	 * @param string $pre
 	 * @throws NoSemanticVersionException
 	 */
-	private function setPre ($pre) {
+	private function setPre($pre) {
 		$this->pre = $pre;
 		$this->preStack = $pre === '' ? [] : explode('.', $pre);
 
@@ -104,7 +104,7 @@ class SemanticVersion {
 	 * @param string $meta
 	 * @throws NoSemanticVersionException
 	 */
-	private function setMeta ($meta) {
+	private function setMeta($meta) {
 		$this->meta = $meta;
 		$this->metaStack = $meta === '' ? [] : explode('.', $meta);
 
