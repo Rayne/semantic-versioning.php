@@ -32,6 +32,10 @@ It's recommended to install and update the library with Composer.
 
 	composer require rayne/semantic-versioning ~1.0
 
+Set the `@dev` stability flag to install the latest development version.
+
+	composer require rayne/semantic-versioning @dev
+
 ##	Download
 
 Download and extract the library. Then include `src/autoload.php`.
