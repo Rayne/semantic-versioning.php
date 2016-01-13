@@ -7,6 +7,7 @@ A tiny independent library for parsing and comparing semantic versions which is 
 [![Build Status](https://travis-ci.org/Rayne/semantic-versioning.php.svg?branch=master)](https://travis-ci.org/Rayne/semantic-versioning.php)
 [![Code Coverage](https://scrutinizer-ci.com/g/Rayne/semantic-versioning.php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Rayne/semantic-versioning.php/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rayne/semantic-versioning.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rayne/semantic-versioning.php/?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/569508ceaf789b002e0002fe/badge.svg?style=flat)](https://www.versioneye.com/user/projects/569508ceaf789b002e0002fe)
 [![License](https://poser.pugx.org/rayne/semantic-versioning/license)](https://packagist.org/packages/rayne/semantic-versioning)
 
 #	Dependencies
