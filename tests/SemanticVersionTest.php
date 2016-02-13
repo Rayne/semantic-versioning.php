@@ -10,7 +10,6 @@
 namespace Rayne\SemanticVersioning;
 
 use PHPUnit_Framework_TestCase;
-use RuntimeException;
 
 /**
  * @see http://semver.org/
@@ -139,7 +138,7 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideInvalidVersions
-	 * @expectedException RuntimeException
+	 * @expectedException \Rayne\SemanticVersioning\NoSemanticVersionException
 	 * @param mixed $version
 	 */
 	public function testInvalidVersion($version) {
