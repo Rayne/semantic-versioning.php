@@ -3,37 +3,9 @@ filter:
         - 'tests/*'
 checks:
     php: true
-coding_style:
-    php:
-        indentation:
-            general:
-                use_tabs: true
-        braces:
-            classes_functions:
-                class: end-of-line
-                function: end-of-line
-                closure: end-of-line
-            if:
-                opening: end-of-line
-                else_on_new_line: true
-            for:
-                opening: end-of-line
-            while:
-                opening: end-of-line
-            do_while:
-                opening: end-of-line
-                while_on_new_line: true
-            switch:
-                opening: end-of-line
-            try:
-                opening: end-of-line
-                catch_on_new_line: true
-                finally_on_new_line: true
-        upper_lower_casing:
-            keywords:
-                general: lower
-            constants:
-                true_false_null: lower
 tools:
     external_code_coverage:
-        runs: 4
+        runs: 2
+    php_code_sniffer:
+        config:
+            standard: "PSR2"

@@ -16,167 +16,181 @@ namespace Rayne\SemanticVersioning;
  * @since 1.0.0-rc.1
  * @see http://semver.org
  */
-class SemanticVersion {
-	/**
-	 * @var int
-	 */
-	private $major;
+class SemanticVersion
+{
+    /**
+     * @var int
+     */
+    private $major;
 
-	/**
-	 * @var int
-	 */
-	private $minor;
+    /**
+     * @var int
+     */
+    private $minor;
 
-	/**
-	 * @var int
-	 */
-	private $patch;
+    /**
+     * @var int
+     */
+    private $patch;
 
-	/**
-	 * @var string
-	 */
-	private $pre;
+    /**
+     * @var string
+     */
+    private $pre;
 
-	/**
-	 * @var array
-	 */
-	private $preStack;
+    /**
+     * @var array
+     */
+    private $preStack;
 
-	/**
-	 * @var string
-	 */
-	private $meta;
+    /**
+     * @var string
+     */
+    private $meta;
 
-	/**
-	 * @var array
-	 */
-	private $metaStack;
+    /**
+     * @var array
+     */
+    private $metaStack;
 
-	/**
-	 * @var string
-	 */
-	private $version;
+    /**
+     * @var string
+     */
+    private $version;
 
-	/**
-	 * @param string $version
-	 * @throws NoSemanticVersionException On incompatible `$version`.
-	 */
-	public function __construct($version) {
-		$this->version = (string) $version;
+    /**
+     * @param string $version
+     * @throws NoSemanticVersionException On incompatible `$version`.
+     */
+    public function __construct($version)
+    {
+        $this->version = (string) $version;
 
-		$matches = [];
+        $matches = [];
 
-		if (!preg_match('#^(\d|[1-9]\d+)\.(\d|[1-9]\d+)\.(\d|[1-9]\d+)(|-[\.0-9A-Za-z-]+)(|\+[\.0-9A-Za-z-]+)$#', $version, $matches)) {
-			throw $this->buildException();
-		}
+        if (!preg_match('#^(\d|[1-9]\d+)\.(\d|[1-9]\d+)\.(\d|[1-9]\d+)(|-[\.0-9A-Za-z-]+)(|\+[\.0-9A-Za-z-]+)$#', $version, $matches)) {
+            throw $this->buildException();
+        }
 
-		$this->major = (int) $matches[1];
-		$this->minor = (int) $matches[2];
-		$this->patch = (int) $matches[3];
+        $this->major = (int) $matches[1];
+        $this->minor = (int) $matches[2];
+        $this->patch = (int) $matches[3];
 
-		$this->setPre($matches[4] ? substr($matches[4], 1) : '');
-		$this->setMeta($matches[5] ? substr($matches[5], 1) : '');
-	}
+        $this->setPre($matches[4] ? substr($matches[4], 1) : '');
+        $this->setMeta($matches[5] ? substr($matches[5], 1) : '');
+    }
 
-	/**
-	 * @return string
-	 */
-	public function __toString() {
-		return $this->getVersion();
-	}
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getVersion();
+    }
 
-	/**
-	 * @param string $pre
-	 * @throws NoSemanticVersionException
-	 */
-	private function setPre($pre) {
-		$this->pre = $pre;
-		$this->preStack = $pre === '' ? [] : explode('.', $pre);
+    /**
+     * @param string $pre
+     * @throws NoSemanticVersionException
+     */
+    private function setPre($pre)
+    {
+        $this->pre = $pre;
+        $this->preStack = $pre === '' ? [] : explode('.', $pre);
 
-		foreach ($this->preStack as $value) {
-			if ($value === '' || preg_match('#^0\d+$#', $value)) {
-				throw $this->buildException();
-			}
-		}
-	}
+        foreach ($this->preStack as $value) {
+            if ($value === '' || preg_match('#^0\d+$#', $value)) {
+                throw $this->buildException();
+            }
+        }
+    }
 
-	/**
-	 * @param string $meta
-	 * @throws NoSemanticVersionException
-	 */
-	private function setMeta($meta) {
-		$this->meta = $meta;
-		$this->metaStack = $meta === '' ? [] : explode('.', $meta);
+    /**
+     * @param string $meta
+     * @throws NoSemanticVersionException
+     */
+    private function setMeta($meta)
+    {
+        $this->meta = $meta;
+        $this->metaStack = $meta === '' ? [] : explode('.', $meta);
 
-		foreach ($this->metaStack as $value) {
-			if ($value === '') {
-				throw $this->buildException();
-			}
-		}
-	}
+        foreach ($this->metaStack as $value) {
+            if ($value === '') {
+                throw $this->buildException();
+            }
+        }
+    }
 
-	/**
-	 * @return NoSemanticVersionException
-	 */
-	private function buildException() {
-		return new NoSemanticVersionException(sprintf('Invalid semantic version `%s`.', $this->getVersion()));
-	}
+    /**
+     * @return NoSemanticVersionException
+     */
+    private function buildException()
+    {
+        return new NoSemanticVersionException(sprintf('Invalid semantic version `%s`.', $this->getVersion()));
+    }
 
-	/**
-	 * @return int Non-negative integer without leading zeroes.
-	 */
-	public function getMajor() {
-		return $this->major;
-	}
+    /**
+     * @return int Non-negative integer without leading zeroes.
+     */
+    public function getMajor()
+    {
+        return $this->major;
+    }
 
-	/**
-	 * @return int Non-negative integer without leading zeroes.
-	 */
-	public function getMinor() {
-		return $this->minor;
-	}
+    /**
+     * @return int Non-negative integer without leading zeroes.
+     */
+    public function getMinor()
+    {
+        return $this->minor;
+    }
 
-	/**
-	 * @return int Non-negative integer without leading zeroes.
-	 */
-	public function getPatch() {
-		return $this->patch;
-	}
+    /**
+     * @return int Non-negative integer without leading zeroes.
+     */
+    public function getPatch()
+    {
+        return $this->patch;
+    }
 
-	/**
-	 * @return string Optional pre-release information.
-	 */
-	public function getPre() {
-		return $this->pre;
-	}
+    /**
+     * @return string Optional pre-release information.
+     */
+    public function getPre()
+    {
+        return $this->pre;
+    }
 
-	/**
-	 * @return string[]
-	 * @since 1.0.0-rc.2
-	 */
-	public function getPreStack() {
-		return $this->preStack;
-	}
+    /**
+     * @return string[]
+     * @since 1.0.0-rc.2
+     */
+    public function getPreStack()
+    {
+        return $this->preStack;
+    }
 
-	/**
-	 * @return string Optional metadata.
-	 */
-	public function getMeta() {
-		return $this->meta;
-	}
+    /**
+     * @return string Optional metadata.
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
 
-	/**
-	 * @return string[]
-	 * @since 1.0.0-rc.2
-	 */
-	public function getMetaStack() {
-		return $this->metaStack;
-	}
+    /**
+     * @return string[]
+     * @since 1.0.0-rc.2
+     */
+    public function getMetaStack()
+    {
+        return $this->metaStack;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getVersion() {
-		return $this->version;
-	}
+    /**
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 }

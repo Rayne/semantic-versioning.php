@@ -14,11 +14,13 @@ use PHPUnit_Framework_TestCase;
 /**
  * Tests for the `autoload.php` file.
  */
-class AutoloadTest extends PHPUnit_Framework_TestCase {
-	/**
-	 *
-	 */
-	public function test() {
-		require dirname(__DIR__) . '/src/autoload.php';
-	}
+class AutoloadTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     *
+     */
+    public function test()
+    {
+        require dirname(__DIR__) . '/src/autoload.php';
+    }
 }

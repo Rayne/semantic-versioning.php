@@ -16,5 +16,6 @@ use RuntimeException;
  *
  * @since 1.0.0-rc.1
  */
-class NoSemanticVersionException extends RuntimeException {
+class NoSemanticVersionException extends RuntimeException
+{
 }
