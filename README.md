@@ -14,7 +14,7 @@ A tiny independent library for parsing and comparing semantic versions which is 
 
 ##	Production
 
-*	PHP 5.4 or better
+*	PHP 5.6 or better
 
 ##	Development
 
