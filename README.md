@@ -60,7 +60,7 @@ Download and extract the library. Then include `src/autoload.php`.
 
 The library contains the following classes:
 
-*	`NoSemanticVersionException`: Thrown by `SemanticVersion` on invalid input
+*	`InvalidVersionException`: Thrown by `SemanticVersion` on invalid input
 
 *	`SemanticComparator`: The semantic versioning comparator for comparing `SemanticVersion` objects
 

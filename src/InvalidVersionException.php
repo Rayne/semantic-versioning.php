@@ -14,8 +14,8 @@ use RuntimeException;
 /**
  * Exception thrown when parsing invalid versions.
  *
- * @since 1.0.0-rc.1
+ * @since 1.0.0-rc.3
  */
-class NoSemanticVersionException extends RuntimeException
+class InvalidVersionException extends RuntimeException
 {
 }

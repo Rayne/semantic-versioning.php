@@ -142,7 +142,7 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideInvalidVersions
-     * @expectedException \Rayne\SemanticVersioning\NoSemanticVersionException
+     * @expectedException \Rayne\SemanticVersioning\InvalidVersionException
      * @param mixed $version
      */
     public function testInvalidVersion($version)

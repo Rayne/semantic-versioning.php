@@ -9,7 +9,7 @@
  * @since 1.0.0-rc.1
  */
 
-require_once __DIR__ . '/NoSemanticVersionException.php';
+require_once __DIR__ . '/InvalidVersionException.php';
 require_once __DIR__ . '/SemanticComparatorInterface.php';
 require_once __DIR__ . '/SemanticComparator.php';
 require_once __DIR__ . '/SemanticVersionInterface.php';

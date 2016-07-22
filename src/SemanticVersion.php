@@ -60,7 +60,7 @@ class SemanticVersion implements SemanticVersionInterface
 
     /**
      * @param string $version
-     * @throws NoSemanticVersionException On incompatible `$version`.
+     * @throws InvalidVersionException On incompatible `$version`.
      */
     public function __construct($version)
     {
@@ -90,7 +90,7 @@ class SemanticVersion implements SemanticVersionInterface
 
     /**
      * @param string $pre
-     * @throws NoSemanticVersionException
+     * @throws InvalidVersionException
      */
     private function setPre($pre)
     {
@@ -106,7 +106,7 @@ class SemanticVersion implements SemanticVersionInterface
 
     /**
      * @param string $meta
-     * @throws NoSemanticVersionException
+     * @throws InvalidVersionException
      */
     private function setMeta($meta)
     {
@@ -121,11 +121,11 @@ class SemanticVersion implements SemanticVersionInterface
     }
 
     /**
-     * @return NoSemanticVersionException
+     * @return InvalidVersionException
      */
     private function buildException()
     {
-        return new NoSemanticVersionException(sprintf('Invalid semantic version `%s`.', $this->getVersion()));
+        return new InvalidVersionException(sprintf('Invalid semantic version `%s`.', $this->getVersion()));
     }
 
     /**
