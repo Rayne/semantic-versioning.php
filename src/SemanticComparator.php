@@ -15,27 +15,20 @@ namespace Rayne\SemanticVersioning;
  * @since 1.0.0-rc.1
  * @see http://semver.org
  */
-class SemanticComparator
+class SemanticComparator implements SemanticComparatorInterface
 {
     /**
-     * @param SemanticVersion $left
-     * @param SemanticVersion $right
-     * @return int
-     * @see compare()
+     * @inheritdoc
      */
-    public function __invoke(SemanticVersion $left, SemanticVersion $right)
+    public function __invoke(SemanticVersionInterface $left, SemanticVersionInterface $right)
     {
         return $this->compare($left, $right);
     }
 
     /**
-     * Build metadata is ignored when determining version precedence.
-     *
-     * @param SemanticVersion $left
-     * @param SemanticVersion $right
-     * @return int `0` if both versions are equal, `< 0` if `$left` is smaller and `> 0` if `$left` is greater.
+     * @inheritdoc
      */
-    public function compare(SemanticVersion $left, SemanticVersion $right)
+    public function compare(SemanticVersionInterface $left, SemanticVersionInterface $right)
     {
         $result = $this->compareMajorMinorPatch($left, $right);
 
@@ -47,11 +40,11 @@ class SemanticComparator
     }
 
     /**
-     * @param SemanticVersion $left
-     * @param SemanticVersion $right
+     * @param SemanticVersionInterface $left
+     * @param SemanticVersionInterface $right
      * @return int
      */
-    private function compareMajorMinorPatch(SemanticVersion $left, SemanticVersion $right)
+    private function compareMajorMinorPatch(SemanticVersionInterface $left, SemanticVersionInterface $right)
     {
         $result = $left->getMajor() - $right->getMajor();
 
@@ -67,11 +60,11 @@ class SemanticComparator
     }
 
     /**
-     * @param SemanticVersion $left
-     * @param SemanticVersion $right
+     * @param SemanticVersionInterface $left
+     * @param SemanticVersionInterface $right
      * @return int
      */
-    private function comparePre(SemanticVersion $left, SemanticVersion $right)
+    private function comparePre(SemanticVersionInterface $left, SemanticVersionInterface $right)
     {
         if ($left->getPre() === '') {
             return $right->getPre() === '' ? 0 : 1;

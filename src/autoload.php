@@ -10,5 +10,7 @@
  */
 
 require_once __DIR__ . '/NoSemanticVersionException.php';
+require_once __DIR__ . '/SemanticComparatorInterface.php';
 require_once __DIR__ . '/SemanticComparator.php';
+require_once __DIR__ . '/SemanticVersionInterface.php';
 require_once __DIR__ . '/SemanticVersion.php';

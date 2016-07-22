@@ -16,7 +16,7 @@ namespace Rayne\SemanticVersioning;
  * @since 1.0.0-rc.1
  * @see http://semver.org
  */
-class SemanticVersion
+class SemanticVersion implements SemanticVersionInterface
 {
     /**
      * @var int
@@ -81,7 +81,7 @@ class SemanticVersion
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function __toString()
     {
@@ -129,7 +129,7 @@ class SemanticVersion
     }
 
     /**
-     * @return int Non-negative integer without leading zeroes.
+     * @inheritdoc
      */
     public function getMajor()
     {
@@ -137,7 +137,7 @@ class SemanticVersion
     }
 
     /**
-     * @return int Non-negative integer without leading zeroes.
+     * @inheritdoc
      */
     public function getMinor()
     {
@@ -145,7 +145,7 @@ class SemanticVersion
     }
 
     /**
-     * @return int Non-negative integer without leading zeroes.
+     * @inheritdoc
      */
     public function getPatch()
     {
@@ -153,7 +153,7 @@ class SemanticVersion
     }
 
     /**
-     * @return string Optional pre-release information.
+     * @inheritdoc
      */
     public function getPre()
     {
@@ -161,8 +161,7 @@ class SemanticVersion
     }
 
     /**
-     * @return string[]
-     * @since 1.0.0-rc.2
+     * @inheritdoc
      */
     public function getPreStack()
     {
@@ -170,7 +169,7 @@ class SemanticVersion
     }
 
     /**
-     * @return string Optional metadata.
+     * @inheritdoc
      */
     public function getMeta()
     {
@@ -178,8 +177,7 @@ class SemanticVersion
     }
 
     /**
-     * @return string[]
-     * @since 1.0.0-rc.2
+     * @inheritdoc
      */
     public function getMetaStack()
     {
@@ -187,7 +185,7 @@ class SemanticVersion
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function getVersion()
     {

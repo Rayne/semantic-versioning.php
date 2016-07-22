@@ -86,10 +86,10 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideEqualVersions
-     * @param SemanticVersion $left
-     * @param SemanticVersion $right
+     * @param SemanticVersionInterface $left
+     * @param SemanticVersionInterface $right
      */
-    public function testEqualComparison(SemanticVersion $left, SemanticVersion $right)
+    public function testEqualComparison(SemanticVersionInterface $left, SemanticVersionInterface $right)
     {
         $comparator = new SemanticComparator();
 
@@ -102,10 +102,10 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideSmallerGreaterVersions
-     * @param SemanticVersion $smaller
-     * @param SemanticVersion $greater
+     * @param SemanticVersionInterface $smaller
+     * @param SemanticVersionInterface $greater
      */
-    public function testNotEqualComparison(SemanticVersion $smaller, SemanticVersion $greater)
+    public function testNotEqualComparison(SemanticVersionInterface $smaller, SemanticVersionInterface $greater)
     {
         $comparator = new SemanticComparator();
 
