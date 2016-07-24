@@ -5,6 +5,10 @@ This project *surprisingly* adheres to [Semantic Versioning](http://semver.org).
 
 ## [Unreleased]
 
+No notable changes.
+
+## [1.0.0] - 2016-07-24
+
 ### Removed
 
 * `autoload.php` in favor of using a [`PSR-4`](http://php-fig.org/psr/psr-4) compatible class loader
@@ -30,5 +34,6 @@ This project *surprisingly* adheres to [Semantic Versioning](http://semver.org).
 * Dropped official support for `PHP < 5.6`
 * Renamed `NoSemanticVersionException` to `InvalidVersionException`
 
-[Unreleased]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0-rc.3...HEAD
+[Unreleased]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0-rc.3...1.0.0
 [1.0.0-rc.3]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0-rc.2...1.0.0-rc.3
