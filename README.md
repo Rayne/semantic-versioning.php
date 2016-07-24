@@ -24,10 +24,6 @@ A tiny independent library for parsing and comparing semantic versions which is 
 
 #	Setup
 
-It's recommended to install and update the library with Composer.
-
-##	Composer
-
 [Download Composer](https://getcomposer.org/download) and install `rayne/semantic-versioning`.
 
 	composer require rayne/semantic-versioning ~1.0
@@ -35,12 +31,6 @@ It's recommended to install and update the library with Composer.
 Set the `@dev` stability flag to install the latest development version.
 
 	composer require rayne/semantic-versioning @dev
-
-##	Download
-
-Download and extract the library. Then include `src/autoload.php`.
-
-	require 'src/autoload.php';
 
 #	Tests
 
