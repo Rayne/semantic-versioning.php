@@ -32,6 +32,11 @@ class ExamplesTest extends PHPUnit_Framework_TestCase
         assert('beta' === $version->getPre());
         assert('exp.sha.5114f85' === $version->getMeta());
         assert('1.0.0-beta+exp.sha.5114f85' === $version->getVersion());
+
+        assert(true  === $version->isMajorRelease());
+        assert(false === $version->isMinorRelease());
+        assert(false === $version->isPatchRelease());
+        assert(true  === $version->isPreRelease());
     }
 
     public function testCompare()

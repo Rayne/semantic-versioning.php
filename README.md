@@ -9,29 +9,25 @@ A tiny independent library for parsing and comparing semantic versions which is 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rayne/semantic-versioning.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rayne/semantic-versioning.php/?branch=master)
 [![License](https://poser.pugx.org/rayne/semantic-versioning/license)](https://packagist.org/packages/rayne/semantic-versioning)
 
-#	Dependencies
+##	Dependencies
 
-##	Production
+###	Production
 
 *	PHP 5.6 or better
 
-##	Development
+###	Development
 
 *	Composer
 *	Git
 *	PHPUnit
 
-#	Setup
+##	Setup
 
 [Download Composer](https://getcomposer.org/download) and install `rayne/semantic-versioning`.
 
 	composer require rayne/semantic-versioning ~1.0
 
-Set the `@dev` stability flag to install the latest development version.
-
-	composer require rayne/semantic-versioning @dev
-
-#	Tests
+##	Tests
 
 1.	Clone the repository
 
@@ -45,7 +41,7 @@ Set the `@dev` stability flag to install the latest development version.
  
 		./vendor/bin/phpunit
 
-#	Examples
+##	Examples
 
 The library contains the following classes:
 
@@ -58,7 +54,7 @@ The library contains the following classes:
 The examples are part of the test suite.
 Have a look at the `tests` directory for more information.
 
-##	Interpret semantic versions
+###	Interpret semantic versions
 
 ```php
 use Rayne\SemanticVersioning\SemanticVersion;
@@ -72,9 +68,14 @@ assert(     0                       === $version->getPatch());
 assert(      'beta'                 === $version->getPre());
 assert(           'exp.sha.5114f85' === $version->getMeta());
 assert('1.0.0-beta+exp.sha.5114f85' === $version->getVersion());
+
+assert(true  === $version->isMajorRelease());
+assert(false === $version->isMinorRelease());
+assert(false === $version->isPatchRelease());
+assert(true  === $version->isPreRelease());
 ```
 
-##	Compare semantic versions
+###	Compare semantic versions
 
 ```php
 use Rayne\SemanticVersioning\SemanticComparator;
@@ -100,7 +101,7 @@ assert($comparator($release, $candidate) > 0);
 assert($comparator->compare($release, $candidate) > 0);
 ```
 
-##	Sort semantic versions
+###	Sort semantic versions
 
 ```php
 use Rayne\SemanticVersioning\SemanticComparator;

@@ -44,7 +44,6 @@ interface SemanticVersionInterface
 
     /**
      * @return string[]
-     *
      * @since 1.0.0-rc.2
      */
     public function getPreStack();
@@ -56,7 +55,6 @@ interface SemanticVersionInterface
 
     /**
      * @return string[]
-     *
      * @since 1.0.0-rc.2
      */
     public function getMetaStack();
@@ -65,4 +63,28 @@ interface SemanticVersionInterface
      * @return string
      */
     public function getVersion();
+
+    /**
+     * @return bool
+     * @since 1.1.0-rc.1
+     */
+    public function isMajorRelease();
+
+    /**
+     * @return bool
+     * @since 1.1.0-rc.1
+     */
+    public function isMinorRelease();
+
+    /**
+     * @return bool
+     * @since 1.1.0-rc.1
+     */
+    public function isPatchRelease();
+
+    /**
+     * @return bool
+     * @since 1.1.0-rc.1
+     */
+    public function isPreRelease();
 }

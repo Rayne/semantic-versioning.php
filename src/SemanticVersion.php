@@ -191,4 +191,36 @@ class SemanticVersion implements SemanticVersionInterface
     {
         return $this->version;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function isMajorRelease()
+    {
+        return $this->minor == 0 && $this->patch == 0;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isMinorRelease()
+    {
+        return $this->minor > 0 && $this->patch == 0;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isPatchRelease()
+    {
+        return $this->patch > 0;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isPreRelease()
+    {
+        return $this->pre !== '';
+    }
 }

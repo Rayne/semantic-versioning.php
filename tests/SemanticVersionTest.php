@@ -149,4 +149,54 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase
     {
         new SemanticVersion($version);
     }
+
+    public function provideReleaseTypes()
+    {
+        return [
+            // Major, Minor, Patch
+            ['0.0.0', true, false, false, false],
+            ['0.1.0', false, true, false, false],
+            ['0.1.1', false, false, true, false],
+
+            ['1.0.0', true, false, false, false],
+            ['1.1.0', false, true, false, false],
+            ['1.1.1', false, false, true, false],
+
+            // Major, Minor, Patch + Pre-Release
+            ['0.0.0-pre', true, false, false, true],
+            ['0.1.0-pre', false, true, false, true],
+            ['0.1.1-pre', false, false, true, true],
+
+            ['1.0.0-pre', true, false, false, true],
+            ['1.1.0-pre', false, true, false, true],
+            ['1.1.1-pre', false, false, true, true],
+
+            // Major, Minor Patch + Meta-Release
+            ['0.0.0+meta', true, false, false, false],
+            ['0.1.0+meta', false, true, false, false],
+            ['0.1.1+meta', false, false, true, false],
+
+            ['1.0.0+meta', true, false, false, false],
+            ['1.1.0+meta', false, true, false, false],
+            ['1.1.1+meta', false, false, true, false],
+        ];
+    }
+
+    /**
+     * @dataProvider provideReleaseTypes
+     * @param string $version
+     * @param bool $isMajorRelease
+     * @param bool $isMinorRelease
+     * @param bool $isPatchRelease
+     * @param bool $isPreRelease
+     */
+    public function testReleaseTypes($version, $isMajorRelease, $isMinorRelease, $isPatchRelease, $isPreRelease)
+    {
+        $object = new SemanticVersion($version);
+
+        $this->assertSame($isMajorRelease, $object->isMajorRelease());
+        $this->assertSame($isMinorRelease, $object->isMinorRelease());
+        $this->assertSame($isPatchRelease, $object->isPatchRelease());
+        $this->assertSame($isPreRelease,   $object->isPreRelease());
+    }
 }
