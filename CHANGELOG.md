@@ -43,7 +43,7 @@ No notable changes.
 * Dropped official support for `PHP < 5.6`
 * Renamed `NoSemanticVersionException` to `InvalidVersionException`
 
-[Unreleased]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/Rayne/semantic-versioning.php/compare/1.1.0...HEAD
 [1.1.0]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0-rc.3...1.0.0
 [1.0.0-rc.3]: https://github.com/Rayne/semantic-versioning.php/compare/1.0.0-rc.2...1.0.0-rc.3
