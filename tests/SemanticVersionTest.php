@@ -171,7 +171,7 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase
             ['1.1.0-pre', false, true, false, true],
             ['1.1.1-pre', false, false, true, true],
 
-            // Major, Minor Patch + Meta-Release
+            // Major, Minor, Patch + Meta-Release
             ['0.0.0+meta', true, false, false, false],
             ['0.1.0+meta', false, true, false, false],
             ['0.1.1+meta', false, false, true, false],
