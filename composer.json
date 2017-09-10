@@ -27,5 +27,9 @@
   "support": {
     "issues": "https://github.com/rayne/semantic-versioning.php/issues",
     "source": "https://github.com/rayne/semantic-versioning.php"
+  },
+  "scripts": {
+    "format": "php-cs-fixer fix",
+    "test": "phpunit"
   }
 }
