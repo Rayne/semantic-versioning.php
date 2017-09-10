@@ -41,7 +41,7 @@ class ExamplesTest extends PHPUnit_Framework_TestCase
 
     public function testCompare()
     {
-        $comparator     = new SemanticComparator();
+        $comparator     = new SemanticComparator;
 
         $alpha          = new SemanticVersion('1.0.0-alpha');
         $candidate      = new SemanticVersion('1.0.0-rc.1');
@@ -70,7 +70,7 @@ class ExamplesTest extends PHPUnit_Framework_TestCase
         ];
 
         // Sort by semantic precedence.
-        usort($versions, new SemanticComparator());
+        usort($versions, new SemanticComparator);
 
         assert($versions[0] === $alpha);
         assert($versions[1] === $candidate);

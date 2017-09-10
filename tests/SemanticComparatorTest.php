@@ -91,7 +91,7 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase
      */
     public function testEqualComparison(SemanticVersionInterface $left, SemanticVersionInterface $right)
     {
-        $comparator = new SemanticComparator();
+        $comparator = new SemanticComparator;
 
         $this->assertSame(0, $comparator->compare($left, $right), "$left == $right");
         $this->assertSame(0, $comparator->compare($right, $left), "$right == $left");
@@ -107,7 +107,7 @@ class SemanticComparatorTest extends PHPUnit_Framework_TestCase
      */
     public function testNotEqualComparison(SemanticVersionInterface $smaller, SemanticVersionInterface $greater)
     {
-        $comparator = new SemanticComparator();
+        $comparator = new SemanticComparator;
 
         $this->assertTrue($comparator->compare($smaller, $greater) < 0, "$smaller < $greater");
         $this->assertTrue($comparator->compare($greater, $smaller) > 0, "$greater > $smaller");

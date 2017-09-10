@@ -81,7 +81,7 @@ assert(true  === $version->isPreRelease());
 use Rayne\SemanticVersioning\SemanticComparator;
 use Rayne\SemanticVersioning\SemanticVersion;
 
-$comparator     = new SemanticComparator();
+$comparator     = new SemanticComparator;
 
 $alpha          = new SemanticVersion('1.0.0-alpha');
 $candidate      = new SemanticVersion('1.0.0-rc.1');
@@ -114,7 +114,7 @@ $versions = [
 ];
 
 // Sort by semantic precedence.
-usort($versions, new SemanticComparator());
+usort($versions, new SemanticComparator);
 
 assert($versions[0] === $alpha);
 assert($versions[1] === $candidate);
