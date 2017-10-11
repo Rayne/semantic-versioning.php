@@ -25,7 +25,7 @@ A tiny independent library for parsing and comparing semantic versions which is 
 
 [Download Composer](https://getcomposer.org/download) and install `rayne/semantic-versioning`.
 
-	composer require rayne/semantic-versioning ~1.0
+	composer require rayne/semantic-versioning
 
 ##	Tests
 
